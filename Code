@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MGR Community | Connect, Create, Grow</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #ededed;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Nav */
+        header {
+            background: #0a0a0a;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2c2c2c;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #a855f7;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #a855f7;
+            color: #a855f7;
+        }
+
+        /* Disabled button style */
+        .btn:disabled {
+            background: #3a3a3a;
+            transform: none;
+            box-shadow: none;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #b0b0b0;
+        }
+
+        /* Section styling */
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid #1f1f1f;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* About grid */
+        .about-grid {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #c0c0c0;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        /* Events Cards */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: #111;
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+            border: 1px solid #2c2c2c;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            border-color: #a855f7;
+        }
+
+        .event-date {
+            color: #a855f7;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Members Grid */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .member {
+            background: #111;
+            padding: 1.5rem;
+            border-radius: 20px;
+        }
+
+        .member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid #a855f7;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #111;
+            padding: 2rem;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: #1f1f1f;
+            border: 1px solid #333;
+            border-radius: 12px;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #a855f7;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .error-msg {
+            color: #ff6b6b;
+            font-size: 0.75rem;
+            margin-top: 0.3rem;
+            display: block;
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-top: 0.3rem;
+        }
+
+        .success-message {
+            background: rgba(74, 222, 128, 0.2);
+            border: 1px solid #4ade80;
+            border-radius: 12px;
+            padding: 0.8rem;
+            text-align: center;
+            color: #4ade80;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #777;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #111;
+            border-radius: 24px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid #2c2c2c;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .modal-btn.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .modal-btn.discord {
+            background: #5865F2;
+            color: white;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+
+        .close-modal {
+            margin-top: 1.5rem;
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .close-modal:hover {
+            color: white;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .modal-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">MGR</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#members">Members</a></li>
+                <li><a href="#contact">Join</a></li>
+            </ul>
+            <button class="btn open-modal-btn">Join Community</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Hero -->
+    <section id="home">
+        <div class="container hero">
+            <h1>Welcome to MGR</h1>
+            <p>Where makers, creators, and dreamers unite. A space to collaborate, innovate, and grow together.</p>
+            <button class="btn open-modal-btn">Get Involved</button>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About <span>MGR</span></h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>MGR is a vibrant community built on three pillars: <strong>Make</strong>, <strong>Grow</strong>, <strong>Rise</strong>. We bring together passionate individuals from all backgrounds—developers, artists, entrepreneurs, and hobbyists—to share knowledge and build amazing things.</p>
+                    <p>Our mission is to provide a supportive environment where members can find collaborators, learn new skills, and turn ideas into reality. Whether you're a beginner or a pro, there's a place for you here.</p>
+                    <p>Founded in 2025, MGR has already hosted 20+ events and connected over 300 members worldwide.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://placehold.co/500x400/1a1a1a/8b5cf6?text=MGR+Community" alt="MGR Community">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events -->
+    <section id="events">
+        <div class="container">
+            <h2 class="section-title">Upcoming <span>Events</span></h2>
+            <div style="text-align: center; padding: 3rem 1rem; background: #111; border-radius: 20px; border: 1px solid #2c2c2c;">
+                <i class="fas fa-calendar-alt" style="font-size: 3rem; color: #a855f7; margin-bottom: 1rem; display: inline-block;"></i>
+                <p style="font-size: 1.2rem; color: #ccc;">No current events, Stay tuned!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members (Testimonials / Directory) -->
+    <section id="members">
+        <div class="container">
+            <h2 class="section-title">Meet Our <span>Members</span></h2>
+            <div class="members-grid">
+               <div class="member">
+                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=max-sunrise" alt="Max-sunrise">
+                    <h3>Max-sunrise</h3>
+                    <p>Member</p>
+                    <small>"MGR helped me Become better at everything."</small>
+                </div>
+                <div class="member">
+                    <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=aidan-francis" alt="Aidan francis">
+                    <h3>Aidan francis</h3>
+                    <p>Community founder</p>
+                    <small>"The community is so supportive—I've been growing it to help other people."</small>
+                </div>
+                <div class="member">
+                    <img src="https://api.dicebear.com/7.x/icons/svg?seed=star-aesthetic&scale=80" alt="Regi">
+                    <h3>Regi</h3>
+                    <p>Co-Founder</p>
+                    <small>"I found my happiness here Thanks to former members and comrades."</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Join -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Join the <span>Community</span></h2>
+            <div class="contact-form">
+                <form id="joinForm" action="#" method="post">
+                    <div class="form-group">
+                        <input type="text" id="contactName" placeholder="Your Name (optional — will appear as 'Anonymous' if empty)">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="contactEmail" placeholder="Email Address *" required>
+                        <span class="error-msg" id="emailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="contactMessage" rows="4" placeholder="Tell us a bit about yourself and why you'd like to join... * (8-150 characters)" maxlength="150"></textarea>
+                        <span class="error-msg" id="messageError"></span>
+                        <div class="char-counter" id="charCounter">0 / 150 characters</div>
+                    </div>
+                    <button type="submit" id="sendRequestBtn" class="btn" style="width: 100%;" disabled>Send Request</button>
+                    <div id="formStatus" style="margin-top: 1rem;"></div>
+                </form>
+                <p style="text-align: center; margin-top: 1.5rem;">Or reach us at <strong>ltwhx@gmail.com</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 MGR Community — Built by <i class="fas fa-star" style="color: #a855f7;"></i> Regi</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="communityModal" class="modal">
+        <div class="modal-content">
+            <h3>Join MGR Community</h3>
+            <p>Choose your preferred platform:</p>
+            <div class="modal-buttons">
+                <a href="https://chat.whatsapp.com/IA2KYqBqBeS4fvZHRteFYu" target="_blank" class="modal-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://discord.gg/5yKAuMsfYN" target="_blank" class="modal-btn discord">
+                    <i class="fab fa-discord"></i> Discord
+                </a>
+            </div>
+            <button class="close-modal">Close</button>
+        </div>
+    </div>
+
+</main>
+
+<script>
+    (function() {
+        // DOM elements
+        const nameInput = document.getElementById('contactName');
+        const emailInput = document.getElementById('contactEmail');
+        const messageInput = document.getElementById('contactMessage');
+        const sendBtn = document.getElementById('sendRequestBtn');
+        const emailError = document.getElementById('emailError');
+        const messageError = document.getElementById('messageError');
+        const charCounter = document.getElementById('charCounter');
+        const formStatus = document.getElementById('formStatus');
+        const joinForm = document.getElementById('joinForm');
+
+        // Helper: validate email format
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+            return emailRegex.test(email.trim());
+        }
+
+        // Validate message length (trimmed, 8-150)
+        function isMessageValid(msg) {
+            const trimmed = msg.trim();
+            return trimmed.length >= 8 && trimmed.length <= 150;
+        }
+
+        // Update character counter & real-time validation
+        function updateCharCounter() {
+            const rawMsg = messageInput.value;
+            const length = rawMsg.length;
+            charCounter.textContent = `${length} / 150 characters`;
+            if (length > 150) {
+                messageInput.value = rawMsg.slice(0, 150);
+                updateCharCounter();
+            }
+        }
+
+        // Validate entire form and enable/disable button + show errors
+        function validateForm() {
+            let isValid = true;
+            const email = emailInput.value;
+            const message = messageInput.value;
+
+            // Email validation
+            if (!email.trim()) {
+                emailError.textContent = "Email address is required.";
+                isValid = false;
+            } else if (!isValidEmail(email)) {
+                emailError.textContent = "Please enter a valid email (e.g., name@example.com).";
+                isValid = false;
+            } else {
+                emailError.textContent = "";
+            }
+
+            // Message validation (trimmed length)
+            const trimmedMsg = message.trim();
+            if (!message.trim()) {
+                messageError.textContent = "Please tell us about yourself (8–150 characters).";
+                isValid = false;
+            } else if (trimmedMsg.length < 8) {
+                messageError.textContent = `Message must be at least 8 characters. (Current: ${trimmedMsg.length})`;
+                isValid = false;
+            } else if (trimmedMsg.length > 150) {
+                messageError.textContent = "Message cannot exceed 150 characters.";
+                isValid = false;
+            } else {
+                messageError.textContent = "";
+            }
+
+            // Enable/disable send button
+            sendBtn.disabled = !isValid;
+            return isValid;
+        }
+
+        // Real-time updates on input
+        function setupRealtimeValidation() {
+            emailInput.addEventListener('input', () => validateForm());
+            messageInput.addEventListener('input', () => {
+                updateCharCounter();
+                validateForm();
+            });
+            nameInput.addEventListener('input', () => {});
+        }
+
+        // Build mailto link and open it
+        function sendViaMailto(event) {
+            event.preventDefault();
+
+            if (!validateForm()) {
+                return; // should never happen because button is disabled when invalid
+            }
+
+            // Get values
+            let nameValue = nameInput.value.trim();
+            if (nameValue === "") {
+                nameValue = "Anonymous";
+            }
+            const emailValue = emailInput.value.trim();
+            const messageValue = messageInput.value.trim();
+
+            // Construct email body
+            const subject = `🌟 MGR Community Join Request from ${nameValue}`;
+            const body = `
+Name: ${nameValue}
+Email: ${emailValue}
+
+Message:
+${messageValue}
+
+--- 
+Sent via MGR Community website
+`.trim();
+
+            // Encode for mailto URI
+            const mailtoLink = `mailto:ltwhx@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            // Open default mail client
+            window.location.href = mailtoLink;
+
+            // Show success message (since the email client opens, we can't know if it was sent, but we assume user will send)
+            formStatus.innerHTML = '<div class="success-message"><i class="fas fa-envelope"></i> Your email client has opened. Please review and send the message to complete your request.</div>';
+
+            // Optionally clear the form after a moment
+            setTimeout(() => {
+                nameInput.value = '';
+                emailInput.value = '';
+                messageInput.value = '';
+                updateCharCounter();
+                validateForm(); // will disable button again
+                // Clear status after 5 seconds
+                setTimeout(() => {
+                    if (formStatus.innerHTML.includes('email client')) {
+                        formStatus.innerHTML = '';
+                    }
+                }, 5000);
+            }, 100);
+        }
+
+        // Initial setup
+        function init() {
+            updateCharCounter();
+            setupRealtimeValidation();
+            validateForm();
+            joinForm.addEventListener('submit', sendViaMailto);
+        }
+
+        // Modal logic (unchanged)
+        const modal = document.getElementById('communityModal');
+        const openModalBtns = document.querySelectorAll('.open-modal-btn');
+        const closeModalBtn = document.querySelector('.close-modal');
+
+        function openModal() {
+            modal.style.display = 'flex';
+        }
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+        openModalBtns.forEach(btn => {
+            btn.addEventListener('click', openModal);
+        });
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) closeModal();
+        });
+
+        init();
+    })();
+</script>
+
+</body>
+</html>
